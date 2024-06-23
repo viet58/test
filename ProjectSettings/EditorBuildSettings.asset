@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/demo.unity
     guid: 4c39057d64ab94044934cc9f140d08f9
   - enabled: 1
-    path: Assets/Scenes/PlayGame.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/KetThuc.unity
+    guid: 95608d31c5fdcf842aa019c4028717f4
   m_configObjects: {}

@@ -7,13 +7,14 @@ public class PlayerControl : MonoBehaviour
     public Rigidbody2D rigidbody2d;
     public Animator anim;
     
-    float horizontal;
-    float vertical;
+    public float horizontal;
+    public float vertical;
 
-    float currentSpeed;
-    float normalSpeed = 25.0f;
-    float sprintSpeed = 50.0f;
-
+    public float currentSpeed;
+    public float normalSpeed = 25.0f;
+    public float sprintSpeed = 50.0f;
+    public bool running = false;
+    
     public float angle = 45f;
 
     // Start is called before the first frame update
@@ -27,16 +28,23 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         horizontal = Input.GetAxis("Horizontal");
+        
+    horizontal = Input.GetAxis("Horizontal");
          vertical = Input.GetAxis("Vertical");
-        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        if(Input.GetKey(KeyCode.LeftShift) && (horizontal != 0 || vertical != 0) || Input.GetKey(KeyCode.RightShift) && (horizontal != 0 || vertical != 0))
         {
+
             currentSpeed = sprintSpeed;
+            running = true;
+            
         }
         else
         {
             currentSpeed = normalSpeed;
+            running = false;
         }
+
+        
             
 
         if (horizontal > 0 && transform.localScale.x < 0)
@@ -69,6 +77,8 @@ public class PlayerControl : MonoBehaviour
             FlipD();
         }
 
+        Border();
+       
        
         
 
@@ -122,6 +132,29 @@ public class PlayerControl : MonoBehaviour
 
         transform.localScale = currenScale;
 
+    }
+
+    void Border()
+    {
+        if(transform.position.y >= 48.33f)
+        {
+            transform.position = new Vector3(transform.position.x, 48.33f, 0);
+        }
+        else if(transform.position.y <= -70.8f)
+        {
+            transform.position = new Vector3(transform.position.x, -70.8f, 0);
+        }
+        else if(transform.position.x <= -1.1f)
+        {
+            transform.position = new Vector3(-1.1f, transform.position.y, 0);
+        }
+        else if (transform.position.x >= 286.1f)
+        {
+            transform.position = new Vector3(286.1f, transform.position.y, 0);
+        }
+
+       
+       
     }
 
    
